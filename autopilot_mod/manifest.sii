@@ -1,0 +1,50 @@
+SiiNunit
+{
+mod_package : .autopilot_mod
+{
+	package_name: "Autopilot Mod for ETS 2"
+	package_version: "1.0.0"
+	display_name: "Autopilot Mod"
+	author: "Mod Developer"
+	category: "gameplay"
+	icon: "material/icon.dds"
+	description: "Автопилот для Euro Truck Simulator 2. Использует встроенный навигатор для автоматического движения по маршруту."
+	tags[]: "autopilot"
+	tags[]: "assist"
+	tags[]: "automation"
+	
+	-- Основные файлы мода
+	mod_data[]: "/init.lua"  -- Точка входа
+	mod_data[]: "/def/autopilot/config.sii"
+	mod_data[]: "/def/autopilot/settings.gui"
+	mod_data[]: "/lua/autopilot_core.lua"
+	mod_data[]: "/lua/logging.lua"
+	mod_data[]: "/lua/navigation_parser.lua"
+	mod_data[]: "/lua/vehicle_control.lua"
+	mod_data[]: "/material/hud_elements.dds"
+	
+	-- Совместимость с версиями игры
+	compatible_versions[]: "1.52"
+	compatible_versions[]: "1.53"
+	compatible_versions[]: "1.54"
+	compatible_versions[]: "1.55"
+	compatible_versions[]: "1.56"
+	compatible_versions[]: "1.57"
+	compatible_versions[]: "1.58"
+	
+	-- Поддержка DLC карт
+	dlc_dependencies[]: "dlc_north"
+	dlc_dependencies[]: "dlc_east"
+	dlc_dependencies[]: "dlc_france"
+	dlc_dependencies[]: "dlc_italy"
+	dlc_dependencies[]: "dlc_balt"
+	dlc_dependencies[]: "dlc_iberia"
+	dlc_dependencies[]: "dlc_balkan"
+	
+	-- Минимальные системные требования
+	min_system_requirements: "CPU: Dual-core 2.4GHz, RAM: 4GB, GPU: 1GB VRAM"
+	
+	-- Рекомендации по производительности
+	performance_notes: "Нагрузка на CPU: 10-15% на среднестатистическом ПК"
+}
+}

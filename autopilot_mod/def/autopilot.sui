@@ -1,0 +1,37 @@
+SiiNunit
+{
+accessory_hookup_data : autopilot.hookup
+{
+	name: "Autopilot System"
+	price: 5000
+	unlock: 0
+	icon: "autopilot"
+	
+	vehicle_accessory: true
+	
+	hookup_anim: "autopilot_anim"
+	
+	params[]: "autopilot.enabled|bool|false"
+	params[]: "autopilot.speed_limit|float|90.0"
+	params[]: "autopilot.follow_distance|float|50.0"
+	params[]: "autopilot.aggressiveness|float|0.5"
+	
+	ui_desc: "Автопилот для автоматического управления грузовиком по маршруту навигатора."
+}
+
+accessory_hookup_data : autopilot_ui.hookup
+{
+	name: "Autopilot Control Panel"
+	price: 1000
+	unlock: 0
+	icon: "dashboard"
+	
+	vehicle_accessory: true
+	
+	hookup_anim: "dashboard_anim"
+	
+	params[]: "autopilot.ui_visible|bool|true"
+	
+	ui_desc: "Панель управления автопилотом с кнопками включения/выключения и настройками."
+}
+}

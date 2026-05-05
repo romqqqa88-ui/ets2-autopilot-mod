@@ -1,0 +1,90 @@
+SiiNunit
+{
+-- Конфигурация автопилота для ETS 2
+-- Версия конфигурации: 1.0
+
+autopilot_config : .autopilot.config
+{
+	-- Основные настройки
+	enabled: true
+	version: "1.0.0"
+	
+	-- Настройки производительности
+	performance_mode: "balanced"	-- balanced, performance, quality
+	update_interval: 0.1		-- интервал обновления (секунды)
+	max_cpu_usage: 15		-- максимальная нагрузка на CPU (%)
+	
+	-- Настройки управления
+	default_speed_limit: 90.0	-- ограничение скорости по умолчанию (км/ч)
+	min_speed_limit: 30.0
+	max_speed_limit: 130.0
+	
+	default_follow_distance: 50.0	-- дистанция следования (м)
+	min_follow_distance: 20.0
+	max_follow_distance: 100.0
+	
+	aggressiveness: 0.5		-- агрессивность управления (0.1-1.0)
+	
+	-- Настройки обнаружения
+	obstacle_detection_range: 100.0	-- дальность обнаружения (м)
+	traffic_sign_detection_range: 80.0	-- дальность обнаружения знаков (м)
+	navigation_lookahead: 5		-- количество точек маршрута для анализа
+	
+	-- Настройки безопасности
+	emergency_braking_enabled: true
+	obey_traffic_lights: true
+	obey_traffic_signs: true
+	lane_keeping_enabled: true
+	overtaking_enabled: true
+	
+	-- Настройки адаптации
+	weather_adaptation: true	-- адаптация к погодным условиям
+	time_of_day_adaptation: true	-- адаптация ко времени суток
+	road_type_adaptation: true	-- адаптация к типу дороги
+	
+	-- Настройки интерфейса
+	hud_enabled: true
+	hud_position_x: 20
+	hud_position_y: 100
+	hud_opacity: 90		-- прозрачность HUD (%)
+	
+	sound_enabled: true
+	sound_volume: 70	-- громкость звуков (%)
+	
+	-- Настройки логгирования
+	logging_enabled: true
+	log_level: "info"	-- debug, info, warning, error
+	log_to_file: true
+	log_file_path: "logs/autopilot.log"
+	
+	-- Настройки совместимости
+	compatibility_mode: "auto"	-- auto, ets2, ats, universal
+	dlc_support: true		-- поддержка DLC карт
+	
+	-- Экспериментальные функции
+	experimental_features: false
+	neural_network_mode: false
+	predictive_steering: false
+	
+	-- Горячие клавиши
+	hotkey_toggle: "F5"		-- включить/выключить автопилот
+	hotkey_ui: "F6"		-- показать/скрыть интерфейс
+	hotkey_emergency: "F7"	-- экстренная остановка
+	hotkey_speed_up: "NUMPAD_PLUS"	-- увеличить скорость
+	hotkey_speed_down: "NUMPAD_MINUS"	-- уменьшить скорость
+	
+	-- Настройки API
+	api_version: "1.52"
+	navigation_api: "game_native"	-- game_native, custom
+	vehicle_control_api: "direct"	-- direct, simulated
+	
+	-- Кэширование
+	cache_enabled: true
+	cache_size: 50		-- размер кэша (МБ)
+	
+	-- Отладка
+	debug_mode: false
+	debug_draw_enabled: false
+	debug_log_verbose: false
+}
+}

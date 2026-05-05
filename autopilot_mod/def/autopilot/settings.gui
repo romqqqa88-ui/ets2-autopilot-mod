@@ -1,0 +1,544 @@
+# Автопилот для ETS 2 - Настройки интерфейса
+# Версия: 1.0.0
+# Формат: SCS GUI Definition
+
+gui : gui.autopilot.settings {
+	# Основные настройки окна
+	width: 600
+	height: 800
+	title: "Настройки автопилота"
+	modal: true
+	resizable: false
+	scrollable: true
+	
+	# Стиль окна
+	style: "standard"
+	background_color: (0.95, 0.95, 0.95, 0.98)
+	border_color: (0.2, 0.4, 0.6, 1.0)
+	border_width: 2
+	
+	# Содержимое окна
+	content {
+		# Заголовок
+		text : text.header {
+			coords: (20, 20, 560, 60)
+			text: "Настройки автопилота"
+			font: "large"
+			color: (0.1, 0.2, 0.4, 1.0)
+			align: center
+			valign: center
+		}
+		
+		# Разделитель
+		line : line.separator1 {
+			coords: (20, 90, 560, 92)
+			color: (0.7, 0.7, 0.7, 1.0)
+			thickness: 2
+		}
+		
+		# Вкладки
+		tab_panel : tab_panel.main {
+			coords: (20, 100, 560, 700)
+			tabs: 4
+			
+			# Вкладка 1: Основные настройки
+			tab : tab.general {
+				title: "Основные"
+				
+				# Активация автопилота
+				group : group.activation {
+					coords: (10, 10, 540, 120)
+					title: "Активация"
+					
+					toggle : toggle.enabled {
+						coords: (20, 40, 520, 70)
+						text: "Включить автопилот"
+						tooltip: "Активирует систему автопилота"
+						variable: "autopilot_enabled"
+						default: true
+					}
+					
+					hotkey : hotkey.toggle {
+						coords: (20, 80, 520, 110)
+						text: "Горячая клавиша включения:"
+						tooltip: "Нажмите для установки горячей клавиши"
+						variable: "autopilot_hotkey"
+						default: "F5"
+					}
+				}
+				
+				# Настройки производительности
+				group : group.performance {
+					coords: (10, 130, 540, 250)
+					title: "Производительность"
+					
+					combo : combo.performance_mode {
+						coords: (20, 40, 520, 70)
+						text: "Режим производительности:"
+						tooltip: "Выберите режим для оптимизации производительности"
+						items: ["Сбалансированный", "Максимальная производительность", "Максимальное качество"]
+						variable: "performance_mode"
+						default: 0
+					}
+					
+					slider : slider.update_interval {
+						coords: (20, 80, 520, 110)
+						text: "Интервал обновления:"
+						tooltip: "Частота обновления системы автопилота (секунды)"
+						min: 0.05
+						max: 0.5
+						step: 0.05
+						variable: "update_interval"
+						default: 0.1
+						format: "%.2f с"
+					}
+					
+					slider : slider.max_cpu_usage {
+						coords: (20, 120, 520, 150)
+						text: "Максимальная нагрузка на CPU:"
+						tooltip: "Ограничение нагрузки на процессор (%)"
+						min: 5
+						max: 30
+						step: 1
+						variable: "max_cpu_usage"
+						default: 15
+						format: "%d%%"
+					}
+				}
+				
+				# Настройки управления
+				group : group.control {
+					coords: (10, 260, 540, 400)
+					title: "Управление"
+					
+					slider : slider.aggressiveness {
+						coords: (20, 40, 520, 70)
+						text: "Агрессивность управления:"
+						tooltip: "Уровень агрессивности вождения (0.1 - осторожный, 1.0 - агрессивный)"
+						min: 0.1
+						max: 1.0
+						step: 0.1
+						variable: "aggressiveness"
+						default: 0.5
+						format: "%.1f"
+					}
+					
+					slider : slider.default_speed_limit {
+						coords: (20, 80, 520, 110)
+						text: "Ограничение скорости по умолчанию:"
+						tooltip: "Стандартное ограничение скорости при отсутствии знаков (км/ч)"
+						min: 30
+						max: 130
+						step: 5
+						variable: "default_speed_limit"
+						default: 90
+						format: "%d км/ч"
+					}
+					
+					slider : slider.follow_distance {
+						coords: (20, 120, 520, 150)
+						text: "Дистанция следования:"
+						tooltip: "Дистанция до впереди идущего транспортного средства (метры)"
+						min: 20
+						max: 100
+						step: 5
+						variable: "follow_distance"
+						default: 50
+						format: "%d м"
+					}
+				}
+			}
+			
+			# Вкладка 2: Безопасность
+			tab : tab.safety {
+				title: "Безопасность"
+				
+				# Системы безопасности
+				group : group.safety_systems {
+					coords: (10, 10, 540, 200)
+					title: "Системы безопасности"
+					
+					toggle : toggle.emergency_braking {
+						coords: (20, 40, 520, 70)
+						text: "Экстренное торможение"
+						tooltip: "Автоматическое экстренное торможение при риске столкновения"
+						variable: "emergency_braking_enabled"
+						default: true
+					}
+					
+					toggle : toggle.obey_traffic_lights {
+						coords: (20, 80, 520, 110)
+						text: "Соблюдение светофоров"
+						tooltip: "Остановка на красный свет и соблюдение сигналов светофора"
+						variable: "obey_traffic_lights"
+						default: true
+					}
+					
+					toggle : toggle.obey_traffic_signs {
+						coords: (20, 120, 520, 150)
+						text: "Соблюдение дорожных знаков"
+						tooltip: "Соблюдение ограничений скорости, знаков остановки и других дорожных знаков"
+						variable: "obey_traffic_signs"
+						default: true
+					}
+					
+					toggle : toggle.lane_keeping {
+						coords: (20, 160, 520, 190)
+						text: "Удержание полосы"
+						tooltip: "Автоматическое удержание транспортного средства в пределах полосы"
+						variable: "lane_keeping_enabled"
+						default: true
+					}
+				}
+				
+				# Настройки обнаружения
+				group : group.detection {
+					coords: (10, 210, 540, 350)
+					title: "Обнаружение"
+					
+					slider : slider.obstacle_detection_range {
+						coords: (20, 40, 520, 70)
+						text: "Дальность обнаружения препятствий:"
+						tooltip: "Максимальная дальность обнаружения других транспортных средств (метры)"
+						min: 50
+						max: 200
+						step: 10
+						variable: "obstacle_detection_range"
+						default: 100
+						format: "%d м"
+					}
+					
+					slider : slider.traffic_sign_detection_range {
+						coords: (20, 80, 520, 110)
+						text: "Дальность обнаружения знаков:"
+						tooltip: "Максимальная дальность обнаружения дорожных знаков (метры)"
+						min: 30
+						max: 150
+						step: 10
+						variable: "traffic_sign_detection_range"
+						default: 80
+						format: "%d м"
+					}
+					
+					slider : slider.navigation_lookahead {
+						coords: (20, 120, 520, 150)
+						text: "Дальность просмотра маршрута:"
+						tooltip: "Количество точек маршрута для анализа вперед"
+						min: 3
+						max: 10
+						step: 1
+						variable: "navigation_lookahead"
+						default: 5
+						format: "%d точек"
+					}
+				}
+				
+				# Настройки адаптации
+				group : group.adaptation {
+					coords: (10, 360, 540, 500)
+					title: "Адаптация"
+					
+					toggle : toggle.weather_adaptation {
+						coords: (20, 40, 520, 70)
+						text: "Адаптация к погодным условиям"
+						tooltip: "Автоматическая адаптация управления к дождю, снегу и другим погодным условиям"
+						variable: "weather_adaptation"
+						default: true
+					}
+					
+					toggle : toggle.time_of_day_adaptation {
+						coords: (20, 80, 520, 110)
+						text: "Адаптация ко времени суток"
+						tooltip: "Автоматическая адаптация к ночному вождению и условиям освещенности"
+						variable: "time_of_day_adaptation"
+						default: true
+					}
+					
+					toggle : toggle.road_type_adaptation {
+						coords: (20, 120, 520, 150)
+						text: "Адаптация к типу дороги"
+						tooltip: "Автоматическая адаптация управления к типу дороги (автобан, городская, сельская)"
+						variable: "road_type_adaptation"
+						default: true
+					}
+				}
+			}
+			
+			# Вкладка 3: Дополнительные функции
+			tab : tab.features {
+				title: "Функции"
+				
+				# Дополнительные системы
+				group : group.additional_systems {
+					coords: (10, 10, 540, 200)
+					title: "Дополнительные системы"
+					
+					toggle : toggle.overtaking {
+						coords: (20, 40, 520, 70)
+						text: "Автоматический обгон"
+						tooltip: "Автоматический обгон медленно движущихся транспортных средств с соблюдением ПДД"
+						variable: "overtaking_enabled"
+						default: true
+					}
+					
+					toggle : toggle.automatic_parking {
+						coords: (20, 80, 520, 110)
+						text: "Автоматическая парковка"
+						tooltip: "Автоматическая парковка по прибытии в пункт назначения"
+						variable: "automatic_parking_enabled"
+						default: true
+					}
+					
+					toggle : toggle.use_game_navigation {
+						coords: (20, 120, 520, 150)
+						text: "Использовать навигатор игры"
+						tooltip: "Использовать встроенный навигатор игры для получения маршрута"
+						variable: "use_game_navigation"
+						default: true
+					}
+					
+					toggle : toggle.alternative_routes {
+						coords: (20, 160, 520, 190)
+						text: "Анализ альтернативных маршрутов"
+						tooltip: "Анализ и выбор оптимального маршрута"
+						variable: "alternative_routes"
+						default: false
+					}
+				}
+				
+				# Настройки навигации
+				group : group.navigation {
+					coords: (10, 210, 540, 320)
+					title: "Навигация"
+					
+					toggle : toggle.avoid_tolls {
+						coords: (20, 40, 520, 70)
+						text: "Избегать платных дорог"
+						tooltip: "Прокладывать маршрут, избегая платных дорог"
+						variable: "avoid_tolls"
+						default: true
+					}
+					
+					toggle : toggle.avoid_ferries {
+						coords: (20, 80, 520, 110)
+						text: "Избегать паромов"
+						tooltip: "Прокладывать маршрут, избегая паромных переправ"
+						variable: "avoid_ferries"
+						default: true
+					}
+					
+					slider : slider.lookahead_distance {
+						coords: (20, 120, 520, 150)
+						text: "Дистанция просмотра вперед:"
+						tooltip: "Дистанция для анализа дороги вперед (метры)"
+						min: 100
+						max: 500
+						step: 50
+						variable: "lookahead_distance"
+						default: 200
+						format: "%d м"
+					}
+				}
+				
+				# Настройки трансмиссии
+				group : group.transmission {
+					coords: (10, 330, 540, 450)
+					title: "Трансмиссия"
+					
+					toggle : toggle.automatic_gearshift {
+						coords: (20, 40, 520, 70)
+						text: "Автоматическое переключение передач"
+						tooltip: "Автоматическое переключение передач для оптимальной работы двигателя"
+						variable: "automatic_gearshift"
+						default: true
+					}
+					
+					toggle : toggle.eco_mode {
+						coords: (20, 80, 520, 110)
+						text: "Экономичный режим"
+						tooltip: "Экономичный режим вождения для снижения расхода топлива"
+						variable: "eco_mode"
+						default: true
+					}
+					
+					toggle : toggle.engine_braking {
+						coords: (20, 120, 520, 150)
+						text: "Торможение двигателем"
+						tooltip: "Использование торможения двигателем для снижения скорости"
+						variable: "engine_braking"
+						default: true
+					}
+				}
+			}
+			
+			# Вкладка 4: Интерфейс и логгирование
+			tab : tab.interface {
+				title: "Интерфейс"
+				
+				# Настройки HUD
+				group : group.hud {
+					coords: (10, 10, 540, 200)
+					title: "Интерфейс (HUD)"
+					
+					toggle : toggle.hud_enabled {
+						coords: (20, 40, 520, 70)
+						text: "Включить HUD автопилота"
+						tooltip: "Отображение информации автопилота на экране"
+						variable: "hud_enabled"
+						default: true
+					}
+					
+					slider : slider.hud_opacity {
+						coords: (20, 80, 520, 110)
+						text: "Прозрачность HUD:"
+						tooltip: "Прозрачность элементов интерфейса автопилота (%)"
+						min: 10
+						max: 100
+						step: 5
+						variable: "hud_opacity"
+						default: 90
+						format: "%d%%"
+					}
+					
+					combo : combo.hud_position {
+						coords: (20, 120, 520, 150)
+						text: "Позиция HUD:"
+						tooltip: "Расположение элементов интерфейса на экране"
+						items: ["Верхний левый", "Верхний правый", "Нижний левый", "Нижний правый", "Центр"]
+						variable: "hud_position"
+						default: 0
+					}
+					
+					toggle : toggle.show_statistics {
+						coords: (20, 160, 520, 190)
+						text: "Показывать статистику"
+						tooltip: "Отображение статистики вождения (расстояние, время, расход топлива)"
+						variable: "show_statistics"
+						default: true
+					}
+				}
+				
+				# Настройки звука
+				group : group.sound {
+					coords: (10, 210, 540, 320)
+					title: "Звуковые оповещения"
+					
+					toggle : toggle.sound_enabled {
+						coords: (20, 40, 520, 70)
+						text: "Включить звуковые оповещения"
+						tooltip: "Звуковые оповещения о событиях автопилота"
+						variable: "sound_enabled"
+						default: true
+					}
+					
+					slider : slider.sound_volume {
+						coords: (20, 80, 520, 110)
+						text: "Громкость оповещений:"
+						tooltip: "Громкость звуковых оповещений автопилота (%)"
+						min: 0
+						max: 100
+						step: 5
+						variable: "sound_volume"
+						default: 70
+						format: "%d%%"
+					}
+					
+					toggle : toggle.warning_sounds {
+						coords: (20, 120, 520, 150)
+						text: "Предупреждающие звуки"
+						tooltip: "Звуковые оповещения о потенциальных опасностях"
+						variable: "warning_sounds"
+						default: true
+					}
+					
+					toggle : toggle.info_sounds {
+						coords: (20, 160, 520, 190)
+						text: "Информационные звуки"
+						tooltip: "Звуковые оповещения об изменениях состояния автопилота"
+						variable: "info_sounds"
+						default: true
+					}
+				}
+				
+				# Настройки логгирования
+				group : group.logging {
+					coords: (10, 330, 540, 500)
+					title: "Логгирование"
+					
+					toggle : toggle.log_to_file {
+						coords: (20, 40, 520, 70)
+						text: "Запись логов в файл"
+						tooltip: "Запись логов работы автопилота в файл"
+						variable: "log_to_file"
+						default: true
+					}
+					
+					combo : combo.log_level {
+						coords: (20, 80, 520, 110)
+						text: "Уровень логгирования:"
+						tooltip: "Детализация записываемых логов"
+						items: ["Только ошибки", "Предупреждения", "Информация", "Отладка"]
+						variable: "log_level"
+						default: 1
+					}
+					
+					slider : slider.max_log_size {
+						coords: (20, 120, 520, 150)
+						text: "Максимальный размер файла:"
+						tooltip: "Максимальный размер файла лога перед ротацией (МБ)"
+						min: 1
+						max: 50
+						step: 1
+						variable: "max_log_size"
+						default: 10
+						format: "%d МБ"
+					}
+					
+					toggle : toggle.enable_console_output {
+						coords: (20, 160, 520, 190)
+						text: "Вывод в консоль"
+						tooltip: "Вывод логов в консоль игры (может снижать производительность)"
+						variable: "enable_console_output"
+						default: true
+					}
+				}
+			}
+		}
+		
+		# Кнопки управления
+		button : button.save {
+			coords: (20, 720, 180, 760)
+			text: "Сохранить"
+			tooltip: "Сохранить настройки и применить изменения"
+			action: "save_settings"
+			style: "primary"
+		}
+		
+		button : button.reset {
+			coords: (200, 720, 360, 760)
+			text: "Сбросить"
+			tooltip: "Сбросить настройки к значениям по умолчанию"
+			action: "reset_settings"
+			style: "secondary"
+		}
+		
+		button : button.cancel {
+			coords: (380, 720, 540, 760)
+			text: "Отмена"
+			tooltip: "Закрыть окно без сохранения изменений"
+			action: "close_window"
+			style: "secondary"
+		}
+		
+		# Статусная строка
+		text : text.status {
+			coords: (20, 770, 560, 790)
+			text: "Готово"
+			font: "small"
+			color: (0.3, 0.3, 0.3, 1.0)
+			align: left
+			valign: center
+			variable: "status_message"
+		}
+	}
+}
